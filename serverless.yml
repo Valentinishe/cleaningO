@@ -1,0 +1,65 @@
+# For full config options, check the docs:
+#    docs.serverless.com
+
+service: ominta
+
+# connect with https://dashboard.serverless.com/
+app: ominta
+tenant: valentinishe
+
+custom:
+  uploadBucket: ominta-file-uploads
+  webpack:
+    webpackConfig: 'webpack.config.js'   # Name of webpack configuration file 
+    includeModules: false   # Node modules configuration for packaging 
+    packager: 'npm'   # Packager that will be used to package your external modules 
+    excludeFiles: src/**/*.test.js # Provide a glob for files to ignore 
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-domain-manager
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  profile: koval.valentyn.pavlovich@gmail.com
+  stage: ${opt:stage, 'dev'} # take argument or default to dev
+  region: ap-southeast-2
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 's3:*'
+      Resource: 'arn:aws:s3:::${self:custom.uploadBucket}/*'
+
+functions:
+  app:
+    name: ${opt:stage, 'dev'}-ominta-serverless
+    handler: App.handler
+    package: 
+      include: src/**
+    # The `events` block defines how to trigger the http events
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+resources:
+  Resources:
+    UploadBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.uploadBucket}
+        AccessControl: PublicRead
+        CorsConfiguration:
+          CorsRules:
+          - AllowedMethods:
+            - GET
+            - PUT
+            - POST
+            - HEAD
+            AllowedOrigins:
+            - '*'
+            AllowedHeaders:
+            - '*'
