@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": 123456,
+    "database": "ominta",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": 123456,
+    "database": "ominta",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "root",
+    "password": 123456,
+    "database": "ominta",
+    "host": "localhost",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}
+

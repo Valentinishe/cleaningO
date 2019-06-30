@@ -7,6 +7,16 @@
       "dom",
       "es2015",
       "esnext.asynciterable"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@Services/*": ["./src/Services/*"],
+      "@Models/*": ["./src/Models/*"],
+      "@Controllers/*": ["./src/Controllers/*"],
+      "@config/*": ["./src/config/*"],
+      "@Utils/*": ["./src/Utils/*"],
+      "@Validations/*": ["./src/Validations/*"],
+      "@Types/*": ["./src/Types/*"],
+    }
   }
 }
