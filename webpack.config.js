@@ -4,6 +4,15 @@ const slsw = require('serverless-webpack');
 module.exports = {
   entry: slsw.lib.entries,
   resolve: {
+    alias: {
+      '@Services': path.resolve(__dirname, 'src/Services/'),
+      '@Models': path.resolve(__dirname, 'src/Models/'),
+      '@Controllers': path.resolve(__dirname, 'src/Controllers/'),
+      '@config': path.resolve(__dirname, 'src/config/'),
+      '@Utils': path.resolve(__dirname, 'src/Utils/'),
+      '@Validations': path.resolve(__dirname, 'src/Validations/'),
+      '@Types': path.resolve(__dirname, 'src/Types/'),
+    },
     extensions: [
       '.js',
       '.json',
