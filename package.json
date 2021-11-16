@@ -12,7 +12,7 @@
     "fake:remove": "node_modules/.bin/sequelize db:seed:undo:all"
   },
   "dependencies": {
-    "aws-sdk": "^2.481.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
